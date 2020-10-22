@@ -32,8 +32,9 @@ WORKDIR ${FOUNDRY_HOME}
 
 COPY src/entrypoint.sh src/package.json src/set_password.js src/download_release.js ./
 RUN npm install && echo ${VERSION} > image_version.txt
+RUN ln -s /mnt/FoundryVTT /data
 
-VOLUME ["/data"]
+VOLUME ["/mnt"]
 
 EXPOSE 30000/TCP
 ENTRYPOINT ["./entrypoint.sh"]
